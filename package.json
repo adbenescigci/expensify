@@ -25,6 +25,7 @@
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
     "css-loader": "0.28.4",
+    "express":"4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
     "moment": "2.24.0",
     "node-sass": "4.13.0",
@@ -50,6 +51,5 @@
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0",
     "webpack-dev-server": "2.5.1"
-    
   }
 }
