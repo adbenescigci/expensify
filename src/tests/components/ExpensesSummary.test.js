@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ExpensesSummary} from '../../components/ExpensesSummary';
-import expenses from '../fixtures/expenses';
 
 test('should test ExpensesSummary with 1 expense', ()=>{
     const wrapper = shallow(<ExpensesSummary expenseCount = {1} expensesTotal = {12}/>);
@@ -11,7 +10,7 @@ test('should test ExpensesSummary with 1 expense', ()=>{
 
 
 test('should test ExpensesSummary with  multiple expenses', ()=>{
-    const wrapper = shallow(<ExpensesSummary expenseCount = {1} expensesTotal = {123245655}/>);
+    const wrapper = shallow(<ExpensesSummary expenseCount = {3} expensesTotal = {123245655}/>);
     expect(wrapper).toMatchSnapshot()
 
 })
