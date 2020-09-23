@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter.js';
 import configureStore from './store/configureStore.js';
-import {addExpense} from './actions/expenses';
+import {startSetExpenses} from './actions/expenses';
 import {setTextFilter} from './actions/filter';
 import getVisibleExpenses from './selectors/expenses'
 
@@ -21,5 +21,11 @@ const jsx = (
    
 );
 
-ReactDOM.render(jsx,document.getElementById('app'));
+ReactDOM.render(<p>Sayfa yukleniyor...</p>,document.getElementById('app'));
+    
+store.dispatch(startSetExpenses()).then(()=>{
+    ReactDOM.render(jsx,document.getElementById('app'));
+});
+
+
 
