@@ -21,5 +21,4 @@ export default [
         amount: 3000 ,
         createdAt: moment(0).add(4,'days').valueOf()
     }
-    
 ]
