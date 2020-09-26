@@ -1,4 +1,12 @@
-import {startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses, startRemoveExpense} from '../../actions/expenses';
+import {
+    startAddExpense, 
+    addExpense, 
+    removeExpense, 
+    startRemoveExpense,
+    editExpense,
+    startEditExpense, 
+    setExpenses, 
+    startSetExpenses} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -14,6 +22,14 @@ beforeEach((done) => {
     database.ref('expenses').set(expensesData).then(()=> done())
 })
 
+
+test('should setup remove expense',() => {
+    const action = removeExpense({id:'123abc'});
+    expect(action).toEqual({
+        type: 'REMOVE_EXPENSE',
+        id: '123abc'
+    })
+})
 
 test('should remove expense from firebase' , (done) => {
     
@@ -34,16 +50,6 @@ test('should remove expense from firebase' , (done) => {
     })
 })
 
-test('should setup remove expense',() => {
-    const action = removeExpense({id:'123abc'});
-    expect(action).toEqual({
-        type: 'REMOVE_EXPENSE',
-        id: '123abc'
-    })
-})
-
-
-
 test('should setup edit expense',() => {
     const action = editExpense('123abc',{note:'as'});
     expect(action).toEqual({
@@ -54,6 +60,29 @@ test('should setup edit expense',() => {
         }
     })
 }) 
+
+test('should edit in firebase', ( done )=>{
+    
+    const store = createMockStore({});
+    const id = expenses[1].id
+    const update ={
+        amount: 150
+    }
+    store.dispatch(startEditExpense(id,update)).then(()=>{
+        const action= store.getActions();
+        expect(action[0]).toEqual({
+            type: 'EDIT_EXPENSE',
+            id ,
+            update
+        }) 
+        return database.ref(`expenses/${ id }`).once('value')
+      
+    }).then((snapshot)=>{ 
+        expect(snapshot.val().amount).toEqual(update.amount)
+        done()})
+
+})
+
 
 test('shold setup add expense provided value', () => {
         const action = addExpense(expenses[2])
