@@ -7,7 +7,7 @@ export function Header ( { startLogout } ) {
     return (
         <header>
          <h1> Duzenleme</h1>
-         <NavLink to='/' activeClassName='is-active' exact={true}> Ana Sayfa </NavLink>
+         <NavLink to='/dashboard' activeClassName='is-active'> Ana Sayfa </NavLink>
          <NavLink to='/create' activeClassName='is-active'> Odeme Ekle </NavLink>
          <button onClick = {startLogout}> Logout </button>
         </header>
