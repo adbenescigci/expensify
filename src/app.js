@@ -6,6 +6,7 @@ import configureStore from './store/configureStore.js';
 import {startSetExpenses} from './actions/expenses';
 import {login , logout} from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
+import LoadingPage from './components/LoadingPage'
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -29,7 +30,7 @@ const renderApp = ()=>{
         hasRendered = true
  }}
 
-ReactDOM.render(<p>Sayfa yukleniyor...</p>,document.getElementById('app'));
+ReactDOM.render(<LoadingPage/>,document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {
